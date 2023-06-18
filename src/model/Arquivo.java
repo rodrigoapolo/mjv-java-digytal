@@ -36,9 +36,9 @@ public class Arquivo {
         if(this.enviar){
             destino.append("cadastro-"+pesssoa.getCpf()+".txt");
         }else {
-            destino.append("cadastro.txt");
+            destino.append("cadastro.csv");
         }
-
+        delimitador = enviar ? "" : ";";
         criarArquivo(destino.toString());
     }
 
@@ -56,8 +56,8 @@ public class Arquivo {
 
     private StringBuilder escreverLayoutDelimitado() {
         StringBuilder conteudo = new StringBuilder();
-        delimitador = enviar ? ";" : "|";
-        conteudo.append(geralTitulo());
+        if(!enviar)
+            conteudo.append(geralTitulo());
         conteudo.append(pesssoa.getNome() + delimitador);
         conteudo.append(pesssoa.getCpf()+ delimitador);
         conteudo.append(pesssoa.getDataNascimento().toString().replace("-","")+ delimitador);
@@ -108,10 +108,9 @@ public class Arquivo {
 
     private String geralTitulo(){
         StringBuilder titulo = new StringBuilder();
-        delimitador = enviar ? ";" : "|";
         titulo.append("Nome"+delimitador+"CPF"+delimitador+"Data"+delimitador+"Sexo"+delimitador);
         titulo.append("Lougradouro"+delimitador+"Numero"+delimitador+"Complemento"+delimitador+"Bairro"
-                +delimitador+"Cidade;Estado"+delimitador);
+                +delimitador+"Cidade"+delimitador+"Estado"+delimitador);
         titulo.append("E-mail"+delimitador+"Telefone"+delimitador+"Celular"+delimitador+"Celular é Whats"+delimitador);
         titulo.append("Profissão"+delimitador+"Empresa"+delimitador+"Salário"+delimitador+"Emprego Atual"+delimitador);
         titulo.append("Pretenção Mínima"+delimitador+"Pretenção Máxima"+delimitador+"Habilidades"+delimitador);
