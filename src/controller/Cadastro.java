@@ -1,6 +1,7 @@
 package controller;
 
 import exception.CadastroException;
+import model.Arquivo;
 import model.Habilidade;
 import model.Pesssoa;
 import model.SEXO;
@@ -19,16 +20,6 @@ public class Cadastro {
     public void setNome(String nome){
         nome = verificaTamanho(nome, 30);
         pesssoa.setNome(nome.toUpperCase().toUpperCase());
-    }
-
-    private String verificaTamanho(String valor, int tamanhoFinal) {
-        if(valor.length() < tamanhoFinal){
-            return adicionalEspaco(valor, tamanhoFinal);
-        }else if (valor.length() > tamanhoFinal) {
-            return valor.substring(0,tamanhoFinal);
-        }else {
-            return valor;
-        }
     }
 
     public void setCpf(String cpf) throws CadastroException {
@@ -51,7 +42,7 @@ public class Cadastro {
     public void setSexo(Character sexo) throws CadastroException{
         if (sexo == 'M') {
             pesssoa.setSexo(SEXO.MASCULINO);
-        } else if (sexo == 'M'){
+        } else if (sexo == 'F'){
             pesssoa.setSexo(SEXO.FEMiNINO);
         }else {
             throw new CadastroException("Sexo inválido: digite M para Masculino ou F para Feminino");
@@ -63,15 +54,6 @@ public class Cadastro {
         pesssoa.getEndereco().setLogradouro(logradouro.toUpperCase());
     }
 
-    private String adicionalEspaco(String valor, int tamanhoFinal ) {
-        StringBuilder espaco = new StringBuilder();
-        for (int i = valor.length(); i<tamanhoFinal; i++){
-            espaco.append(" ");
-        }
-        espaco.append(valor);
-        return espaco.toString();
-    }
-
     public void setNumero(String numero){
         if (numero.length() < 5) {
             numero = preecherZero(numero,5);
@@ -79,15 +61,6 @@ public class Cadastro {
         } else {
             pesssoa.getEndereco().setNumero(numero);
         }
-    }
-
-    private String preecherZero(String numero, int tamanhoFinal) {
-        StringBuilder zero = new StringBuilder();
-        for (int i = numero.length(); i<tamanhoFinal; i++){
-            zero.append("0");
-        }
-        zero.append(numero);
-        return zero.toString();
     }
 
     public void setComplemento(String complemento){
@@ -124,20 +97,13 @@ public class Cadastro {
         pesssoa.getContato().setCelular(celular);
     }
 
-    private String verificaNumero(String numero) {
-        numero.replaceAll("[^0-9]","");
-        if (numero.length() != 0) {
-            return numero;
-        } else {
-            return preecherZero(numero, 11);
-        }
-    }
-
-    public void setWhatsApp(Character whatsApp){
+    public void setWhatsApp(Character whatsApp) throws CadastroException{
         if (whatsApp == 'T') {
             pesssoa.getContato().setWhatsApp(true);
-        }else {
+        }else if(whatsApp == 'F'){
             pesssoa.getContato().setWhatsApp(false);
+        }else {
+            throw new CadastroException("Valor inválido: digite T para Sim ou F para não");
         }
     }
 
@@ -179,8 +145,50 @@ public class Cadastro {
 
         for (String nomeHabilidade : listaHabilidade) {
             Habilidade habilidade = new Habilidade();
-            habilidade.setNome(verificaTamanho(nomeHabilidade,50));
+            habilidade.setNome(nomeHabilidade);
             pesssoa.getHabilidades().add(habilidade);
         }
+    }
+
+    public void salvar(){
+        Arquivo arquivo = new Arquivo();
+        arquivo.salvar(pesssoa);
+    }
+
+    private String verificaTamanho(String valor, int tamanhoFinal) {
+        if(valor.length() < tamanhoFinal){
+            return adicionalEspaco(valor, tamanhoFinal);
+        }else if (valor.length() > tamanhoFinal) {
+            return valor.substring(0,tamanhoFinal);
+        }else {
+            return valor;
+        }
+    }
+
+    private String adicionalEspaco(String valor, int tamanhoFinal ) {
+        StringBuilder espaco = new StringBuilder();
+        for (int i = valor.length(); i<tamanhoFinal; i++){
+            espaco.append(" ");
+        }
+        espaco.append(valor);
+        return espaco.toString();
+    }
+
+    private String verificaNumero(String numero) {
+        numero = numero.replaceAll("[^0-9]","");
+        if (numero.length() != 0) {
+            return numero;
+        } else {
+            return preecherZero(numero, 11);
+        }
+    }
+
+    private String preecherZero(String numero, int tamanhoFinal) {
+        StringBuilder zero = new StringBuilder();
+        for (int i = numero.length(); i<tamanhoFinal; i++){
+            zero.append("0");
+        }
+        zero.append(numero);
+        return zero.toString();
     }
 }
