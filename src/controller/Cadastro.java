@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Cadastro {
     private Pesssoa pesssoa = new Pesssoa();
+    private Arquivo arquivo = new Arquivo();
     private DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public Pesssoa getPesssoa() {
@@ -151,8 +152,11 @@ public class Cadastro {
     }
 
     public void salvar(){
-        Arquivo arquivo = new Arquivo();
         arquivo.salvar(pesssoa);
+    }
+
+    public void enviar() {
+        arquivo.enviar(pesssoa);
     }
 
     private String verificaTamanho(String valor, int tamanhoFinal) {

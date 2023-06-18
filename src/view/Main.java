@@ -31,7 +31,7 @@ public class Main {
             cadastro.setNomeEmpresa("Microsoft");
             cadastro.setNomeEmpresa("Microsoft");
             cadastro.setSalario("R$ 5.279,33");
-            cadastro.setEmpregoAtual('F');
+            cadastro.setEmpregoAtual('T');
             cadastro.setPretencaoMinima("R$ 5.279,33");
             cadastro.setPretencaoMaxima("R$ 5.279,33");
             cadastro.setHabilidades("Java, Vue3, Postgres, Spring");
@@ -40,5 +40,6 @@ public class Main {
         }
 
         cadastro.salvar();
+        cadastro.enviar();
     }
 }
