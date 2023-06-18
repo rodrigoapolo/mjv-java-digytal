@@ -4,7 +4,7 @@ public class Profissao {
     private String Cargo;
     private String nomeEmpresa;
     private Double salario;
-    private boolean atual;
+    private boolean empregoAtual;
 
     private RegimeContratacao regimeContratacao;
 
@@ -32,12 +32,12 @@ public class Profissao {
         this.salario = salario;
     }
 
-    public boolean isAtual() {
-        return atual;
+    public boolean isEmpregoAtual() {
+        return empregoAtual;
     }
 
-    public void setAtual(boolean atual) {
-        this.atual = atual;
+    public void setEmpregoAtual(boolean empregoAtual) {
+        this.empregoAtual = empregoAtual;
     }
 
     public RegimeContratacao getRegimeContratacao() {
