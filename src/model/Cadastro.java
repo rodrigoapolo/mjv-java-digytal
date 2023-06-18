@@ -4,12 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Cadastro {
-    private Pesssoa pesssoa;
+    private Pesssoa pesssoa = new Pesssoa();
     private DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-    public Cadastro() {
-        this.pesssoa = new Pesssoa();
-    }
 
     public Pesssoa getPesssoa() {
         return pesssoa;
