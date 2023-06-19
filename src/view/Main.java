@@ -2,7 +2,6 @@ package view;
 
 import controller.Cadastro;
 import exception.CadastroException;
-import model.Habilidade;
 
 public class Main {
     public static void main(String[] args) {
