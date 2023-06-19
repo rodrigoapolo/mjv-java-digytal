@@ -14,15 +14,15 @@ import java.nio.file.StandardOpenOption;
 
 public class Arquivo {
 
-    private final String path = "/home/rodrigoapolo/jobby/files/";
+    private final String PATH = "/home/rodrigoapolo/jobby/files/";
     private String delimitador;
     private boolean enviar;
     private Pesssoa pesssoa;
 
     public Arquivo() {
-        File destino = new File(path.substring(0, 25));
+        File destino = new File(PATH.substring(0, 25));
         destino.mkdir();
-        destino = new File(path.substring(0, 31));
+        destino = new File(PATH.substring(0, 31));
         destino.mkdir();
     }
 
@@ -37,7 +37,7 @@ public class Arquivo {
     }
 
     private void gerarArquivo(boolean enviar) {
-        StringBuilder destino = new StringBuilder(path);
+        StringBuilder destino = new StringBuilder(PATH);
         this.enviar = enviar;
         if (this.enviar) {
             destino.append("cadastro-" + pesssoa.getCpf() + ".txt");
