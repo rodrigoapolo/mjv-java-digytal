@@ -2,17 +2,12 @@ package view;
 
 import controller.Cadastro;
 import exception.CadastroException;
-import model.Habilidade;
 
 public class Main {
     public static void main(String[] args) {
-        /* TODO
-                criar mais clsse
-                dados null
-         */
-        Cadastro cadastro = null;
+
+        Cadastro cadastro = new Cadastro();
         try {
-            cadastro = new Cadastro();
             cadastro.setNome("Raimundo Nonato Loureiro Castelo Branco");
             cadastro.setCpf("135.217.791-18");
             cadastro.setDataNascimento("16/04/1986");
