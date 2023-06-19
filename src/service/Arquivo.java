@@ -1,4 +1,8 @@
-package model;
+package service;
+
+import model.Habilidade;
+import model.Pesssoa;
+import model.Sexo;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -61,7 +65,7 @@ public class Arquivo {
         conteudo.append(pesssoa.getNome() + delimitador);
         conteudo.append(pesssoa.getCpf()+ delimitador);
         conteudo.append(pesssoa.getDataNascimento().toString().replace("-","")+ delimitador);
-        conteudo.append((pesssoa.getSexo() == SEXO.MASCULINO ? "M" : "F")+ delimitador);
+        conteudo.append((pesssoa.getSexo() == Sexo.MASCULINO ? "M" : "F")+ delimitador);
         conteudo.append(pesssoa.getEndereco().getLogradouro()+ delimitador);
         conteudo.append(pesssoa.getEndereco().getNumero()+ delimitador);
         conteudo.append(pesssoa.getEndereco().getComplemento()+ delimitador);

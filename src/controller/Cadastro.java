@@ -1,10 +1,11 @@
 package controller;
 
 import exception.CadastroException;
-import model.Arquivo;
+import model.Sexo;
+import service.Arquivo;
 import model.Habilidade;
 import model.Pesssoa;
-import model.SEXO;
+
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -42,9 +43,9 @@ public class Cadastro {
 
     public void setSexo(Character sexo) throws CadastroException{
         if (sexo == 'M') {
-            pesssoa.setSexo(SEXO.MASCULINO);
+            pesssoa.setSexo(Sexo.MASCULINO);
         } else if (sexo == 'F'){
-            pesssoa.setSexo(SEXO.FEMiNINO);
+            pesssoa.setSexo(Sexo.FEMiNINO);
         }else {
             throw new CadastroException("Sexo inválido: digite M para Masculino ou F para Feminino");
         }
