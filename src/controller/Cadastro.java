@@ -5,6 +5,7 @@ import model.Sexo;
 import service.Arquivo;
 import model.Habilidade;
 import model.Pesssoa;
+import util.Formatacao;
 
 
 import java.time.LocalDate;
@@ -19,13 +20,13 @@ public class Cadastro {
         return pesssoa;
     }
 
-    public void setNome(String nome){
-        nome = verificaTamanho(nome, 30);
+    public void setNome(String nome) {
+        nome = Formatacao.verificaTamanho(nome, 30);
         pesssoa.setNome(nome.toUpperCase().toUpperCase());
     }
 
     public void setCpf(String cpf) throws CadastroException {
-        cpf = cpf.replaceAll("[^0-9]+","");
+        cpf = cpf.replaceAll("[^0-9]+", "");
         if (cpf.length() == 11) {
             pesssoa.setCpf(cpf);
         } else {
@@ -33,7 +34,7 @@ public class Cadastro {
         }
     }
 
-    public void setDataNascimento(String dataNascimento) throws CadastroException{
+    public void setDataNascimento(String dataNascimento) throws CadastroException {
         if (dataNascimento.length() == 10) {
             pesssoa.setDataNascimento(LocalDate.parse(dataNascimento, fmt));
         } else {
@@ -41,109 +42,109 @@ public class Cadastro {
         }
     }
 
-    public void setSexo(Character sexo) throws CadastroException{
+    public void setSexo(Character sexo) throws CadastroException {
         if (sexo == 'M') {
             pesssoa.setSexo(Sexo.MASCULINO);
-        } else if (sexo == 'F'){
+        } else if (sexo == 'F') {
             pesssoa.setSexo(Sexo.FEMiNINO);
-        }else {
+        } else {
             throw new CadastroException("Sexo inválido: digite M para Masculino ou F para Feminino");
         }
     }
 
-    public void setLogradouro(String logradouro){
-        logradouro = verificaTamanho(logradouro, 40);
+    public void setLogradouro(String logradouro) {
+        logradouro = Formatacao.verificaTamanho(logradouro, 40);
         pesssoa.getEndereco().setLogradouro(logradouro.toUpperCase());
     }
 
-    public void setNumero(String numero){
+    public void setNumero(String numero) {
         if (numero.length() < 5) {
-            numero = preecherZero(numero,5);
+            numero = Formatacao.preecherZero(numero, 5);
             pesssoa.getEndereco().setNumero(numero);
         } else {
             pesssoa.getEndereco().setNumero(numero);
         }
     }
 
-    public void setComplemento(String complemento){
-        complemento = verificaTamanho(complemento, 20);
+    public void setComplemento(String complemento) {
+        complemento = Formatacao.verificaTamanho(complemento, 20);
         pesssoa.getEndereco().setComplemento(complemento.toUpperCase());
     }
 
-    public void setBairro(String bairro){
-        bairro = verificaTamanho(bairro, 30);
+    public void setBairro(String bairro) {
+        bairro = Formatacao.verificaTamanho(bairro, 30);
         pesssoa.getEndereco().setBairro(bairro.toUpperCase());
     }
 
-    public void setCidade(String cidade){
-        cidade = verificaTamanho(cidade, 40);
+    public void setCidade(String cidade) {
+        cidade = Formatacao.verificaTamanho(cidade, 40);
         pesssoa.getEndereco().setCidade(cidade.toUpperCase());
     }
 
-    public void setEstado(String estado){
+    public void setEstado(String estado) {
         pesssoa.getEndereco().setEstado(estado.toUpperCase());
     }
 
-    public void setEmail(String email){
-        email = verificaTamanho(email, 50);
+    public void setEmail(String email) {
+        email = Formatacao.verificaTamanho(email, 50);
         pesssoa.getContato().setEmail(email.toLowerCase());
     }
 
-    public void setTelefone(String telefone){
-        telefone = verificaNumero(telefone);
+    public void setTelefone(String telefone) {
+        telefone = Formatacao.verificaNumero(telefone);
         pesssoa.getContato().setTelefone(telefone);
     }
 
-    public void setCelular(String celular){
-        celular = verificaNumero(celular);
+    public void setCelular(String celular) {
+        celular = Formatacao.verificaNumero(celular);
         pesssoa.getContato().setCelular(celular);
     }
 
-    public void setWhatsApp(Character whatsApp) throws CadastroException{
+    public void setWhatsApp(Character whatsApp) throws CadastroException {
         if (whatsApp == 'T') {
             pesssoa.getContato().setWhatsApp(true);
-        }else if(whatsApp == 'F'){
+        } else if (whatsApp == 'F') {
             pesssoa.getContato().setWhatsApp(false);
-        }else {
+        } else {
             throw new CadastroException("Valor inválido: digite T para Sim ou F para não");
         }
     }
 
     public void setCargo(String cargo) {
-        cargo = verificaTamanho(cargo, 30);
+        cargo = Formatacao.verificaTamanho(cargo, 30);
         pesssoa.getProfissao().setCargo(cargo.toUpperCase());
     }
 
-    public void setNomeEmpresa(String nomeEmpresa){
-        nomeEmpresa = verificaTamanho(nomeEmpresa,30);
+    public void setNomeEmpresa(String nomeEmpresa) {
+        nomeEmpresa = Formatacao.verificaTamanho(nomeEmpresa, 30);
         pesssoa.getProfissao().setNomeEmpresa(nomeEmpresa.toUpperCase());
     }
 
-    public void setSalario(String salario){
-        String sal = salario.replaceAll("[^0-9,]","").replace(",",".");
+    public void setSalario(String salario) {
+        String sal = salario.replaceAll("[^0-9,]", "").replace(",", ".");
         pesssoa.getProfissao().setSalario(Double.valueOf(sal));
     }
 
-    public void setEmpregoAtual(Character empregoAtual){
+    public void setEmpregoAtual(Character empregoAtual) {
         if (empregoAtual == 'T') {
             pesssoa.getProfissao().setEmpregoAtual(true);
-        }else {
+        } else {
             pesssoa.getProfissao().setEmpregoAtual(false);
         }
     }
 
-    public void setPretencaoMinima(String salario){
-        String sal = salario.replaceAll("[^0-9,]","").replace(",",".");
+    public void setPretencaoMinima(String salario) {
+        String sal = salario.replaceAll("[^0-9,]", "").replace(",", ".");
         pesssoa.getPretencaoSalarial().setValorMinimo(Double.valueOf(sal));
     }
 
-    public void setPretencaoMaxima(String salario){
-        String sal = salario.replaceAll("[^0-9,]","").replace(",",".");
+    public void setPretencaoMaxima(String salario) {
+        String sal = salario.replaceAll("[^0-9,]", "").replace(",", ".");
         pesssoa.getPretencaoSalarial().setValorMaximo(Double.valueOf(sal));
     }
 
-    public void setHabilidades(String habilidades){
-        String[] listaHabilidade = habilidades.replace(" ","").split(",");
+    public void setHabilidades(String habilidades) {
+        String[] listaHabilidade = habilidades.replace(" ", "").split(",");
 
         for (String nomeHabilidade : listaHabilidade) {
             Habilidade habilidade = new Habilidade();
@@ -152,48 +153,11 @@ public class Cadastro {
         }
     }
 
-    public void salvar(){
+    public void salvar() {
         arquivo.salvar(pesssoa);
     }
 
     public void enviar() {
         arquivo.enviar(pesssoa);
-    }
-
-    private String verificaTamanho(String valor, int tamanhoFinal) {
-        if(valor.length() < tamanhoFinal){
-            return adicionalEspaco(valor, tamanhoFinal);
-        }else if (valor.length() > tamanhoFinal) {
-            return valor.substring(0,tamanhoFinal);
-        }else {
-            return valor;
-        }
-    }
-
-    private String adicionalEspaco(String valor, int tamanhoFinal ) {
-        StringBuilder espaco = new StringBuilder();
-        for (int i = valor.length(); i<tamanhoFinal; i++){
-            espaco.append(" ");
-        }
-        espaco.append(valor);
-        return espaco.toString();
-    }
-
-    private String verificaNumero(String numero) {
-        numero = numero.replaceAll("[^0-9]","");
-        if (numero.length() != 0) {
-            return numero;
-        } else {
-            return preecherZero(numero, 11);
-        }
-    }
-
-    private String preecherZero(String numero, int tamanhoFinal) {
-        StringBuilder zero = new StringBuilder();
-        for (int i = numero.length(); i<tamanhoFinal; i++){
-            zero.append("0");
-        }
-        zero.append(numero);
-        return zero.toString();
     }
 }

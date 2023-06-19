@@ -12,7 +12,7 @@ public class Pesssoa {
     private Endereco endereco = new Endereco();
     private Contato contato = new Contato();
     private Profissao profissao = new Profissao();
-    private PretencaoSalarial pretencaoSalarial =  new PretencaoSalarial();
+    private PretencaoSalarial pretencaoSalarial = new PretencaoSalarial();
     private Set<Habilidade> habilidades = new HashSet<>();
 
     public String getNome() {
